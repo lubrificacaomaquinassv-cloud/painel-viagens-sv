@@ -12,7 +12,7 @@ from supabase import create_client
 
 from sigcf_auth import aplicar_tema_sigcf, dark_table, exigir_acesso, logo_html
 
-BUILD = "2026-07-18-painel-v3"
+BUILD = "2026-07-19-painel-v4"
 
 st.set_page_config(
     page_title="SIG Frota — Painel Gerencial",
@@ -187,12 +187,13 @@ with tab1:
     )
     cols = [
         "Data/Hora", "placa", "linha", "tipo_viagem", "km_percorrido",
-        "motivo", "motorista", "Destino",
+        "motivo", "motorista", "autorizado_por", "Destino",
     ]
     cols = [c for c in cols if c in show.columns or c in ("Data/Hora", "Destino")]
     rename = {
         "placa": "Placa", "linha": "Linha", "tipo_viagem": "Tipo",
         "km_percorrido": "KM", "motivo": "Motivo", "motorista": "Motorista",
+        "autorizado_por": "Autorizou",
     }
     tabela = show[[c for c in cols if c in show.columns]].rename(columns=rename)
     dark_table(tabela, height=320)
